@@ -1,0 +1,21 @@
+{
+    "name": "materodev/extbase-utilities",
+    "description": "Basic utility stuff for extbase related coding work",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Matero GmbH",
+            "homepage": "https://www.matero.de"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "typo3/cms-core": "^11.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Materodev\\ExtbaseUtilities\\": "src"
+        }
+    }
+}
