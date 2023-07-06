@@ -46,7 +46,10 @@ abstract class AbstractEnum
 
         $data = [];
         foreach ($names as $id => $name) {
-            $data[] = [$name, $id];
+            $data[] = [
+                'label' => $name,
+                'value' => $id,
+            ];
         }
 
         return $data;
