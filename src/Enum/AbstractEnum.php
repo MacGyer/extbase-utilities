@@ -38,13 +38,21 @@ abstract class AbstractEnum
         return $data;
     }
 
-    public static function tcaItems(array $names = []): array
+    public static function tcaItems(array $names = [], bool $includeBlank = true, mixed $blankValue = 0, mixed $blankLabel = ''): array
     {
         if (empty($names)) {
             $names = static::labels();
         }
 
         $data = [];
+
+        if ($includeBlank) {
+            $data[] = [
+                'label' => $blankLabel,
+                'value' => $blankValue
+            ];
+        }
+
         foreach ($names as $id => $name) {
             $data[] = [
                 'label' => $name,
