@@ -2,6 +2,8 @@
 
 namespace Materodev\ExtbaseUtilities\Enum;
 
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+
 abstract class AbstractEnum
 {
     public static function labels(): array
@@ -17,6 +19,10 @@ abstract class AbstractEnum
 
         $labels = static::labels();
         if (isset($labels[$key])) {
+            $value = $labels[$key];
+            if (str_starts_with($value, 'LLL:')) {
+                return LocalizationUtility::translate($value);
+            }
             return $labels[$key];
         }
 
