@@ -1,1 +1,6 @@
 # Extbase Utilities
+
+## Changelog
+
+### 13.x
+* replace constant based enum implementation with native Enum handling
