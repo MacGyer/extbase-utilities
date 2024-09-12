@@ -11,14 +11,13 @@ use TYPO3\CMS\Core\Localization\LanguageService;
 
 abstract class BaseBackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
-    protected ?ModuleTemplateFactory $moduleTemplateFactory;
     protected ?UriBuilder $backendUriBuilder;
-    protected ?IconFactory $iconFactory;
     protected ModuleTemplate $moduleTemplate;
 
-    public function injectModuleTemplateFactory(ModuleTemplateFactory $moduleTemplateFactory): void
-    {
-        $this->moduleTemplateFactory = $moduleTemplateFactory;
+    public function __construct(
+        private readonly ModuleTemplateFactory $moduleTemplateFactory,
+        private readonly IconFactory $iconFactory
+    ) {
     }
 
     public function injectUriBuilder(UriBuilder $uriBuilder): void
@@ -26,12 +25,7 @@ abstract class BaseBackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\A
         $this->backendUriBuilder = $uriBuilder;
     }
 
-    public function injectIconFactory(IconFactory $iconFactory): void
-    {
-        $this->iconFactory = $iconFactory;
-    }
-
-    protected function initializeAction()
+    protected function initializeAction(): void
     {
         parent::initializeAction();
         $this->moduleTemplate = $this->moduleTemplateFactory->create($this->request);
