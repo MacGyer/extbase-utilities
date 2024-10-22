@@ -35,6 +35,22 @@ trait IntegerEnumTrait
         return $label;
     }
 
+    /**
+     * Wrap label() for use in magic getters like Fluid
+     */
+    public function getLabel(): string
+    {
+        return $this->label();
+    }
+
+    /**
+     * Wrap localizedLabel() for use in magic getters like Fluid
+     */
+    public function getLocalizedLabel(): string
+    {
+        return $this->localizedLabel();
+    }
+
     public function getShortName(): string
     {
         $result = '';
