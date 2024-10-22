@@ -167,4 +167,16 @@ trait IntegerEnumTrait
 
         throw new \ValueError("$name is not a valid backing value for enum " . self::class);
     }
+
+    public static function fromLabel(string $label): self
+    {
+        foreach (self::cases() as $case) {
+            $caseLabel = $case->localizedLabel();
+            if ($label === $case->localizedLabel()) {
+                return $case;
+            }
+        }
+
+        throw new \ValueError("Enum could not be determined by label '$label' in " . self::class);
+    }IntegerEnumTrait
 }
