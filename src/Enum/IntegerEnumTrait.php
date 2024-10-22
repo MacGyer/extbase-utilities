@@ -178,5 +178,5 @@ trait IntegerEnumTrait
         }
 
         throw new \ValueError("Enum could not be determined by label '$label' in " . self::class);
-    }IntegerEnumTrait
+    }
 }
