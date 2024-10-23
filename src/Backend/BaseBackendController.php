@@ -8,6 +8,11 @@ use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\CMS\Core\Messaging\FlashMessage;
+use TYPO3\CMS\Core\Messaging\FlashMessageQueue;
+use TYPO3\CMS\Core\Messaging\FlashMessageService;
+use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 abstract class BaseBackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
@@ -45,5 +50,22 @@ abstract class BaseBackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\A
     protected function getBackendUser(): BackendUserAuthentication
     {
         return $GLOBALS['BE_USER'];
+    }
+
+    protected function addNotification(string $message, string $title = '', ContextualFeedbackSeverity $severity = ContextualFeedbackSeverity::OK, bool $storeInSession = true): void
+    {
+        /** @var FlashMessageService $flashMessageService */
+        $flashMessageService = GeneralUtility::makeInstance(FlashMessageService::class);
+        $queue = $flashMessageService->getMessageQueueByIdentifier(FlashMessageQueue::NOTIFICATION_QUEUE);
+
+        $flashMessage = GeneralUtility::makeInstance(
+            FlashMessage::class,
+            $message,
+            $title,
+            $severity,
+            $storeInSession
+        );
+
+        $queue->enqueue($flashMessage);
     }
 }
