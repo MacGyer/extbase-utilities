@@ -2,10 +2,14 @@
 
 ## Changelog
 
+### 13.4.1 - 2025-07-31
+* compatibility with TYPO3 13
+* replace constant based enum implementation with native Enum handling
+* add `Autoconfigure` attribute to `GenericPageTitleProvider`
+
 ### 13.4.0 - 2025-03-20
 * compatibility with TYPO3 13
 * replace constant based enum implementation with native Enum handling
-* add 
 * add `BaseBackendController::addNotification()` to display notifications
 * add view helpers for phone numbers
 * add `TcaUtility::getEmptySlugPrefix()` to remove prefix from slug fields
