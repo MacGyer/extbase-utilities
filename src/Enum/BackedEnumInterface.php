@@ -2,7 +2,7 @@
 
 namespace Materodev\ExtbaseUtilities\Enum;
 
-interface BackendEnumInterface extends \BackedEnum
+interface BackedEnumInterface extends \BackedEnum
 {
     public function label(): string;
     public function equals(\BackedEnum $enum): bool;

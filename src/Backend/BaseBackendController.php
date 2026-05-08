@@ -3,6 +3,7 @@
 namespace Materodev\ExtbaseUtilities\Backend;
 
 use TYPO3\CMS\Backend\Routing\UriBuilder;
+use TYPO3\CMS\Backend\Template\Components\ComponentFactory;
 use TYPO3\CMS\Backend\Template\ModuleTemplate;
 use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
@@ -17,6 +18,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 abstract class BaseBackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
     protected ModuleTemplateFactory $moduleTemplateFactory;
+    protected ComponentFactory $componentFactory;
     protected IconFactory $iconFactory;
     protected ?UriBuilder $backendUriBuilder;
     protected ModuleTemplate $moduleTemplate;
@@ -24,6 +26,11 @@ abstract class BaseBackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\A
     public function injectModuleTemplateFactory(ModuleTemplateFactory $moduleTemplateFactory): void
     {
         $this->moduleTemplateFactory = $moduleTemplateFactory;
+    }
+    
+    public function injectComponentFactory(ComponentFactory $componentFactory): void
+    {
+        $this->componentFactory = $componentFactory;
     }
 
     public function injectIconFactory(IconFactory $iconFactory): void
