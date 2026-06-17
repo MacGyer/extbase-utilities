@@ -19,12 +19,13 @@ class ListContainsViewHelper extends AbstractConditionViewHelper
 
     public static function verdict(array $arguments, RenderingContextInterface $renderingContext): bool
     {
-        $list = GeneralUtility::trimExplode($arguments['separator'], $arguments['list'], true);
+        $list = GeneralUtility::trimExplode($arguments['separator'], $arguments['list'] ?? '', true);
         $candidate = trim($arguments['candidate']);
 
         if ($arguments['negate']) {
             return !in_array($candidate, $list, true);
         }
+
         return in_array($candidate, $list, true);
     }
 }
